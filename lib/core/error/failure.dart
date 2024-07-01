@@ -2,10 +2,10 @@ import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {}
 
-class FirebaseException extends Failure{
+class FirebaseError extends Failure{
   final String code;
 
-  FirebaseException({required this.code});
+  FirebaseError({required this.code});
   @override
   List<Object?> get props => [code];
 }

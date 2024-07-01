@@ -18,27 +18,19 @@ class AppUtils {
   static const kBoxWith12 = SizedBox(width: 12);
 
   /// divider
-  // static const kDivider = Divider(
-  //   height: 1,
-  //   thickness: 1,
-  //   color: LightThemeColors.borderColor,
-  // );
-  // static const kDivider8Ver = Padding(
-  //   padding: EdgeInsets.symmetric(vertical: 8),
-  //   child: Divider(
-  //     height: 1,
-  //     thickness: 1,
-  //     color: LightThemeColors.borderColor,
-  //   ),
-  // );
-  // static const kGap16Divider = SliverToBoxAdapter(child: kPadHor16Divider);
-  // static const kPadHor16Divider = Divider(
-  //   height: 1,
-  //   thickness: 1,
-  //   indent: 16,
-  //   endIndent: 16,
-  //   color: LightThemeColors.borderColor,
-  // );
+  static const kDivider = Divider(
+    height: 1,
+    thickness: 1,
+    color: LightThemeColors.fieldColor,
+  );
+  static const kDividerPad20 = Padding(
+    padding: EdgeInsets.symmetric(horizontal: 20),
+    child: Divider(
+      height: 1,
+      thickness: 1,
+      color: LightThemeColors.fieldColor,
+    ),
+  );
   static const kPad60Divider = Padding(
     padding: EdgeInsets.only(left: 60),
     child: Divider(height: 1, thickness: 1),
@@ -110,6 +102,7 @@ class AppUtils {
   static const kPaddingHorizontal16Vertical8 =
       EdgeInsets.symmetric(horizontal: 16.0, vertical: 8);
   static const kPaddingAll8 = EdgeInsets.all(8);
+  static const kPaddingAll9 = EdgeInsets.all(9);
   static const kPaddingAll12 = EdgeInsets.all(12);
   static const kPaddingAll10 = EdgeInsets.all(10);
   static const kPaddingAll14 = EdgeInsets.all(14);
@@ -215,6 +208,10 @@ class AppUtils {
       EdgeInsets.only(left: 16, top: 20, bottom: 24);
   static const kPaddingR20T16B16 =
       EdgeInsets.only(right: 20, top: 16, bottom: 16);
+  static const kPaddingR20T14L20 =
+      EdgeInsets.only(right: 20, top: 14, left: 20);
+  static const kPaddingR20T14L20B23 =
+      EdgeInsets.only(right: 20, top: 14, left: 20, bottom: 23);
 
   static const kPaddingHor32Ver20 =
       EdgeInsets.symmetric(horizontal: 32, vertical: 20);
@@ -242,6 +239,8 @@ class AppUtils {
   static const kPaddingVer8 = EdgeInsets.symmetric(vertical: 8);
   static const kPaddingHor16Ver12 =
       EdgeInsets.symmetric(horizontal: 16, vertical: 12);
+  static const kPaddingHor0Ver10 =
+      EdgeInsets.symmetric(horizontal: 0, vertical: 10);
   static const kPaddingHor14Ver10 =
       EdgeInsets.symmetric(horizontal: 14, vertical: 10);
   static const kPaddingHor12Ver16 =

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:chat_test/core/theme/app_text_styles.dart';
 import 'package:chat_test/core/theme/colors/app_colors.dart';
 import 'package:chat_test/core/utils/app_utils.dart';
@@ -40,5 +42,21 @@ class Functions {
         ),
       ),
     );
+  }
+
+  static String generateUniqueId() {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const numbers = '0123456789';
+    final random = Random();
+
+    String generateRandomString(int length, String chars) {
+      return String.fromCharCodes(Iterable.generate(
+          length, (_) => chars.codeUnitAt(random.nextInt(chars.length))));
+    }
+
+    String randomLetters = generateRandomString(3, letters);
+    String randomNumbers = generateRandomString(4, numbers);
+
+    return randomLetters + randomNumbers;
   }
 }

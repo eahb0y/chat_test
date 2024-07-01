@@ -1,13 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:chat_test/core/error/failure.dart';
 import 'package:chat_test/core/functions/base_finctions.dart';
+import 'package:chat_test/core/local_source/local_source.dart';
 import 'package:chat_test/features/auth/domain/entity/auth_request_entity.dart';
 import 'package:chat_test/features/auth/domain/usecacse/create_user_auth_use_case.dart';
 import 'package:chat_test/features/auth/domain/usecacse/login_auth_use_case.dart';
+import 'package:chat_test/injection_container.dart';
+import 'package:chat_test/router/app_routes.dart';
+import 'package:chat_test/router/name_routes.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 
 part 'auth_event.dart';
-
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -21,6 +25,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           isLoading: false,
         )) {
     on<CreateUserEvent>(_createUserCall);
+    on<LoginEvent>(_loginCall);
   }
 
   Future<void> _createUserCall(
@@ -31,11 +36,35 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       email: event.email,
     ));
     response.fold((l) {
-      if (l is FirebaseException) {
+      if (l is FirebaseError) {
         Functions.showAlertSnackBar(l.code);
       }
       emit(state.copyWith(isLoading: false));
     }, (r) {
+      sl<LocalSource>().setUserEmail(event.email);
+      sl<LocalSource>().setUserPassword(event.password);
+      Navigator.pushReplacementNamed(
+          rootNavigatorKey.currentContext!, Routes.main);
+      emit(state.copyWith(isLoading: false));
+    });
+  }
+
+  Future<void> _loginCall(LoginEvent event, Emitter<AuthState> emit) async {
+    emit(state.copyWith(isLoading: true));
+    final response = await loginAuthUseCase(AuthRequestEntity(
+      password: event.password,
+      email: event.email,
+    ));
+    response.fold((l) {
+      if (l is FirebaseError) {
+        Functions.showAlertSnackBar(l.code);
+      }
+      emit(state.copyWith(isLoading: false));
+    }, (r) {
+      sl<LocalSource>().setUserEmail(event.email);
+      sl<LocalSource>().setUserPassword(event.password);
+      Navigator.pushReplacementNamed(
+          rootNavigatorKey.currentContext!, Routes.main);
       emit(state.copyWith(isLoading: false));
     });
   }

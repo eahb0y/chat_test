@@ -99,6 +99,36 @@ class AppLocalization {
       args: [],
     );
   }
+
+  /// `Чаты`
+  String get chats {
+    return Intl.message(
+      'Чаты',
+      name: 'chats',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Поиск`
+  String get search {
+    return Intl.message(
+      'Поиск',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сообщение`
+  String get massage {
+    return Intl.message(
+      'Сообщение',
+      name: 'massage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {

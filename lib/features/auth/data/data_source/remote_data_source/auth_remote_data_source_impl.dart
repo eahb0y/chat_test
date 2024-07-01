@@ -8,7 +8,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   @override
   Future<void> createNewUser(NewUserAuthRequest request) async {
     try {
-      await Firebase.authFireBase.createUserWithEmailAndPassword(
+      await FirebaseInstance.authFireBase.createUserWithEmailAndPassword(
         email: request.email ?? "",
         password: request.password ?? "",
       );
@@ -22,7 +22,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   @override
   Future<void> logInUser(NewUserAuthRequest request) async {
     try {
-      await Firebase.authFireBase.signInWithEmailAndPassword(
+      await FirebaseInstance.authFireBase.signInWithEmailAndPassword(
         email: request.email ?? "",
         password: request.password ?? "",
       );

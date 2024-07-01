@@ -3,5 +3,8 @@
   "email" : "Email",
   "password": "Парол",
   "log_in" : "Войти",
-  "register" : "Регистрироваться"
+  "register" : "Регистрироваться",
+  "chats" : "Чаты",
+  "search" : "Поиск",
+  "massage" : "Сообщение"
 }

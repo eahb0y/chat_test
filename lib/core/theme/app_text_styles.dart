@@ -10,6 +10,11 @@ class AppTextStyles {
     fontSize: 13,
     fontWeight: FontWeight.w400,
   );
+  static const chatsTitle = TextStyle(
+    color: Colors.black,
+    fontSize: 15,
+    fontWeight: FontWeight.w600,
+  );
   static const hintTextStyle = TextStyle(
     color: LightThemeColors.fieldText,
     fontSize: 16,

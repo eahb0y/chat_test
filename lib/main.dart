@@ -9,10 +9,10 @@ void main() async {
   await Firebase.initializeApp(
       options: const FirebaseOptions(
     apiKey: 'AIzaSyBLShbHzwPsTn6gx-xqImsWtNc3J0pSzZ0',
-    appId: 'id',
-    messagingSenderId: 'sendid',
+    appId: '1:675414802468:android:63d9a6f137e4817d5ed8b1',
+    messagingSenderId: '675414802468',
     projectId: 'chat-33025',
-    storageBucket: 'myapp-b9yt18.appspot.com',
+    // storageBucket: 'com.example.chat_test',
   ));
   await di.init();
   FirebaseFirestore.instance.settings = const Settings(

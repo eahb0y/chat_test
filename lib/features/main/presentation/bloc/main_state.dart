@@ -1,18 +1,26 @@
 part of 'main_bloc.dart';
 
 class MainState extends Equatable {
-  final Set<Items>? massageList;
+  final ChatsResponseEntity? massagesList;
+  final bool isLoading;
   const MainState({
-    this.massageList,
-});
+    this.massagesList,
+    required this.isLoading,
+  });
+
   MainState copyWith({
-    Set<Items>? massageList
-}){
+    ChatsResponseEntity? massagesList,
+    bool? isLoading,
+  }) {
     return MainState(
-      massageList: massageList ?? this.massageList,
+      isLoading: isLoading ?? this.isLoading,
+      massagesList: massagesList ?? this.massagesList,
     );
   }
 
   @override
-  List<Object?> get props => [massageList];
+  List<Object?> get props => [
+        massagesList,
+        isLoading,
+      ];
 }

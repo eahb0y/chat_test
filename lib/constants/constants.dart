@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class Constants {}
 
-class Firebase {
+class FirebaseInstance {
   static FirebaseAuth authFireBase = FirebaseAuth.instance;
-  static FirebaseFirestore cloudFireBase = FirebaseFirestore.instance;
+  static FirebaseFirestore  cloudFireBase = FirebaseFirestore.instance;
 }
 
 class Validations {
@@ -15,4 +15,10 @@ class Validations {
 class AppKeys{
 static const EMAIL = "email";
 static const PASSWORD = "password";
+}
+
+class FireBaseCollection{
+  static const String chatsBaseCollection = "chats";
+  static const String usersBaseCollection = "users";
+  static const String conversationBaseCollection = "conversations";
 }

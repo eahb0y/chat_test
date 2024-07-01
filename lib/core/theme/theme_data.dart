@@ -47,7 +47,7 @@ final lightTheme = appTheme.copyWith(
     minVerticalPadding: 14,
     minLeadingWidth: 16,
     horizontalTitleGap: 12,
-    tileColor: ThemeColors.black,
+    tileColor: ThemeColors.white,
     selectedColor: LightThemeColors.white,
     selectedTileColor: LightThemeColors.white,
     shape: RoundedRectangleBorder(
@@ -79,7 +79,7 @@ final lightTheme = appTheme.copyWith(
       //   ),
       // ),
       titleTextStyle: AppTextStyles.appBarTitle,
-      toolbarHeight: 56,
+      toolbarHeight: 42,
       iconTheme: IconThemeData(color: ThemeColors.white),
       titleSpacing: 0),
   inputDecorationTheme: const InputDecorationTheme(
@@ -112,7 +112,7 @@ final lightTheme = appTheme.copyWith(
         Radius.circular(8),
       ),
       borderSide: BorderSide(
-        color: ThemeColors.primaryColor,
+        color: LightThemeColors.fieldColor,
       ),
     ),
     disabledBorder: OutlineInputBorder(
@@ -125,7 +125,7 @@ final lightTheme = appTheme.copyWith(
       borderRadius: BorderRadius.all(
         Radius.circular(8),
       ),
-      borderSide: BorderSide(color: ThemeColors.errorColor),
+      borderSide: BorderSide(color: LightThemeColors.fieldColor),
     ),
     filled: true,
     isDense: true,

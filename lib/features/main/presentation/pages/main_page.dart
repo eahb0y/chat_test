@@ -1,12 +1,71 @@
+import 'package:chat_test/core/loading/progress_hud.dart';
+import 'package:chat_test/core/theme/app_text_styles.dart';
+import 'package:chat_test/core/utils/app_utils.dart';
+import 'package:chat_test/features/chat/presentation/arguments/chat_arguments.dart';
+import 'package:chat_test/features/main/presentation/bloc/main_bloc.dart';
+import 'package:chat_test/features/main/presentation/pages/widget/main_app_bar.dart';
+import 'package:chat_test/router/name_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
   @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  @override
+  void initState() {
+    context.read<MainBloc>().add(const GetAllChatsEvent());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
+    return BlocBuilder<MainBloc, MainState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: ModalProgressHUD(
+            inAsyncCall: state.isLoading,
+            child: CustomScrollView(
+              slivers: [
+                const MainAppBar(),
+                SliverList.separated(
+                  itemBuilder: (_, index) => ListTile(
+                    contentPadding: AppUtils.kPaddingHor0Ver10,
+                    minLeadingWidth: 10,
+                    minVerticalPadding: 0,
+                    horizontalTitleGap: -4,
+                    leading: const CircleAvatar(
+                      radius: 50,
+                    ),
+                    title: Text(
+                      state.massagesList?.setOfChats
+                              ?.toList()[index]
+                              .recipient ??
+                          "",
+                      style: AppTextStyles.chatsTitle,
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.chat,
+                          arguments: ChatArguments(
+                            user: state.massagesList?.setOfChats
+                                    ?.toList()[index]
+                                    .recipient ??
+                                "",
+                          ));
+                    },
+                  ),
+                  separatorBuilder: (_, __) => AppUtils.kDividerPad20,
+                  itemCount: state.massagesList?.setOfChats?.length ?? 0,
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

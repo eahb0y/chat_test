@@ -1,4 +1,5 @@
 import 'package:chat_test/core/loading/custom_loading.dart';
+import 'package:chat_test/core/loading/progress_hud.dart';
 import 'package:chat_test/core/theme/app_text_styles.dart';
 import 'package:chat_test/core/utils/app_utils.dart';
 import 'package:chat_test/features/auth/presentation/bloc/auth_bloc.dart';
@@ -25,65 +26,67 @@ class _AuthPageState extends State<AuthPage> with AuthMixin {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Padding(
-              padding: AppUtils.kPaddingL10,
-              child: Text(
-                AppLocalization.current.welcome,
-                style: AppTextStyles.appBarTitle,
+        return ModalProgressHUD(
+          inAsyncCall: state.isLoading,
+          child: Scaffold(
+            appBar: AppBar(
+              title: Padding(
+                padding: AppUtils.kPaddingL10,
+                child: Text(
+                  AppLocalization.current.welcome,
+                  style: AppTextStyles.appBarTitle,
+                ),
               ),
             ),
-          ),
-          body: state.isLoading
-              ? const Center(child: CustomLoadingWidget())
-              : BlocBuilder<AuthBloc, AuthState>(
-                  builder: (context, state) {
-                    return Padding(
-                      padding: AppUtils.kPaddingHor16,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TextField(
-                            controller: emailController,
-                            decoration: InputDecoration(
-                                hintText: AppLocalization.current.email,
-                                border: const OutlineInputBorder()),
-                          ),
-                          AppUtils.kBoxHeight10,
-                          TextField(
-                            controller: passwordController,
-                            decoration: InputDecoration(
-                                hintText: AppLocalization.current.password,
-                                border: const OutlineInputBorder()),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-          bottomNavigationBar: SafeArea(
-            minimum: AppUtils.kPaddingVer24Hor16.copyWith(
-              bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+            body: Padding(
+              padding: AppUtils.kPaddingHor16,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    controller: emailController,
+                    decoration: InputDecoration(
+                        hintText: AppLocalization.current.email,
+                        border: const OutlineInputBorder()),
+                  ),
+                  AppUtils.kBoxHeight10,
+                  TextField(
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                        hintText: AppLocalization.current.password,
+                        border: const OutlineInputBorder()),
+                  ),
+                ],
+              ),
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text(AppLocalization.current.log_in),
-                ),
-                AppUtils.kBoxHeight12,
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<AuthBloc>().add(CreateUserEvent(
-                          email: emailController.text,
-                          password: passwordController.text,
-                        ));
-                  },
-                  child: Text(AppLocalization.current.register),
-                )
-              ],
+            bottomNavigationBar: SafeArea(
+              minimum: AppUtils.kPaddingVer24Hor16.copyWith(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<AuthBloc>().add(LoginEvent(
+                        email: emailController.text,
+                        password: passwordController.text,
+                      ));
+                    },
+                    child: Text(AppLocalization.current.log_in),
+                  ),
+                  AppUtils.kBoxHeight12,
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<AuthBloc>().add(CreateUserEvent(
+                            email: emailController.text,
+                            password: passwordController.text,
+                          ));
+                    },
+                    child: Text(AppLocalization.current.register),
+                  )
+                ],
+              ),
             ),
           ),
         );

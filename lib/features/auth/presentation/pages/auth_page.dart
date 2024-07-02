@@ -1,4 +1,3 @@
-import 'package:chat_test/core/loading/custom_loading.dart';
 import 'package:chat_test/core/loading/progress_hud.dart';
 import 'package:chat_test/core/theme/app_text_styles.dart';
 import 'package:chat_test/core/utils/app_utils.dart';
@@ -48,6 +47,12 @@ class _AuthPageState extends State<AuthPage> with AuthMixin {
                     decoration: InputDecoration(
                         hintText: AppLocalization.current.email,
                         border: const OutlineInputBorder()),
+                    onChanged: (value) {
+                      context.read<AuthBloc>().add(EnableSubmitButtonEvent(
+                            email: value,
+                            password: passwordController.text,
+                          ));
+                    },
                   ),
                   AppUtils.kBoxHeight10,
                   TextField(
@@ -55,6 +60,12 @@ class _AuthPageState extends State<AuthPage> with AuthMixin {
                     decoration: InputDecoration(
                         hintText: AppLocalization.current.password,
                         border: const OutlineInputBorder()),
+                    onChanged: (value) {
+                      context.read<AuthBloc>().add(EnableSubmitButtonEvent(
+                            email: emailController.text,
+                            password: value,
+                          ));
+                    },
                   ),
                 ],
               ),
@@ -67,22 +78,26 @@ class _AuthPageState extends State<AuthPage> with AuthMixin {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ElevatedButton(
-                    onPressed: () {
-                      context.read<AuthBloc>().add(LoginEvent(
-                        email: emailController.text,
+                    onPressed: state.isEnable
+                        ? () {
+                            context.read<AuthBloc>().add(LoginEvent(
+                                  email: emailController.text,
                         password: passwordController.text,
                       ));
-                    },
+                          }
+                        : null,
                     child: Text(AppLocalization.current.log_in),
                   ),
                   AppUtils.kBoxHeight12,
                   ElevatedButton(
-                    onPressed: () {
-                      context.read<AuthBloc>().add(CreateUserEvent(
-                            email: emailController.text,
+                    onPressed: state.isEnable
+                        ? () {
+                            context.read<AuthBloc>().add(CreateUserEvent(
+                                  email: emailController.text,
                             password: passwordController.text,
                           ));
-                    },
+                          }
+                        : null,
                     child: Text(AppLocalization.current.register),
                   )
                 ],

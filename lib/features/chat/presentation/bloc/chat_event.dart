@@ -50,9 +50,9 @@ class SendMassageCallEvent extends ChatEvent {
 }
 
 class UploadImageEvent extends ChatEvent{
-  final String image;
+  final XFile? image;
 
   const UploadImageEvent({required this.image});
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [image];
 }

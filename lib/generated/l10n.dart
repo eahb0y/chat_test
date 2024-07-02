@@ -129,6 +129,96 @@ class AppLocalization {
       args: [],
     );
   }
+
+  /// `Открыть камеру`
+  String get open_camera {
+    return Intl.message(
+      'Открыть камеру',
+      name: 'open_camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Выбрать из галереи`
+  String get select_from_gallery {
+    return Intl.message(
+      'Выбрать из галереи',
+      name: 'select_from_gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Неправильный пароль`
+  String get wrong_password {
+    return Intl.message(
+      'Неправильный пароль',
+      name: 'wrong_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `неверный адрес электронной почты`
+  String get invalid_email {
+    return Intl.message(
+      'неверный адрес электронной почты',
+      name: 'invalid_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Отключен пользователем`
+  String get user_disabled {
+    return Intl.message(
+      'Отключен пользователем',
+      name: 'user_disabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Пользователь не найден`
+  String get user_not_found {
+    return Intl.message(
+      'Пользователь не найден',
+      name: 'user_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Этот электронный адрес уже занят`
+  String get email_already_exist {
+    return Intl.message(
+      'Этот электронный адрес уже занят',
+      name: 'email_already_exist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Слабый пароль`
+  String get weak_password {
+    return Intl.message(
+      'Слабый пароль',
+      name: 'weak_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Вставьте другой адрес электронной почты`
+  String get input_another_email {
+    return Intl.message(
+      'Вставьте другой адрес электронной почты',
+      name: 'input_another_email',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {

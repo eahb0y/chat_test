@@ -12,7 +12,7 @@ void main() async {
     appId: '1:675414802468:android:63d9a6f137e4817d5ed8b1',
     messagingSenderId: '675414802468',
     projectId: 'chat-33025',
-    // storageBucket: 'com.example.chat_test',
+    storageBucket: 'gs://chat-33025.appspot.com',
   ));
   await di.init();
   FirebaseFirestore.instance.settings = const Settings(

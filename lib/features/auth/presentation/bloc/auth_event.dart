@@ -36,4 +36,18 @@ class LoginEvent extends AuthEvent {
       ];
 }
 
+class EnableSubmitButtonEvent extends AuthEvent {
+  final String email;
+  final String password;
 
+  const EnableSubmitButtonEvent({
+    required this.email,
+    required this.password,
+  });
+
+  @override
+  List<Object?> get props => [
+        email,
+        password,
+      ];
+}

@@ -1,13 +1,11 @@
-import 'package:chat_test/core/model/error_response.dart';
-
 class ServerException implements Exception {
   final String? errorCode;
 
   ServerException({this.errorCode});
 
-  factory ServerException.fromJson(String errorCode) {
+  factory ServerException.fromJson(String error) {
     return ServerException(
-      errorCode: errorCode,
+      errorCode: error,
     );
   }
 }

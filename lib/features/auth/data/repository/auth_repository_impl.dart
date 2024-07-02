@@ -1,3 +1,4 @@
+import 'package:chat_test/core/error/exceptions.dart';
 import 'package:chat_test/core/error/failure.dart';
 import 'package:chat_test/core/usecase/usecase.dart';
 import 'package:chat_test/features/auth/data/data_source/remote_data_source/auth_remote_data_source.dart';
@@ -20,8 +21,8 @@ class AuthRepositoryImpl extends AuthRepository {
       ));
       return const Right(NoParams());
     } catch (e) {
-      return Left(ServerError(
-        message: e is ServerError ? e.message : e.toString(),
+      return Left(FirebaseError(
+        code: e is ServerException ? (e.errorCode ?? "") : e.toString(),
       ));
     }
   }
@@ -36,8 +37,8 @@ class AuthRepositoryImpl extends AuthRepository {
       ));
       return const Right(NoParams());
     } catch (e) {
-      return Left(ServerError(
-        message: e is ServerError ? e.message : e.toString(),
+      return Left(FirebaseError(
+        code: e is ServerException ? (e.errorCode ?? "") : e.toString(),
       ));
     }
   }

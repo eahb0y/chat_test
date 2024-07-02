@@ -21,11 +21,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(
     this.createUserAuthUseCase,
     this.loginAuthUseCase,
-  ) : super(const AuthState(
-          isLoading: false,
-        )) {
+  ) : super(const AuthState(isLoading: false, isEnable: false)) {
     on<CreateUserEvent>(_createUserCall);
     on<LoginEvent>(_loginCall);
+    on<EnableSubmitButtonEvent>(_enviableSubmitButton);
   }
 
   Future<void> _createUserCall(
@@ -37,7 +36,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     ));
     response.fold((l) {
       if (l is FirebaseError) {
-        Functions.showAlertSnackBar(l.code);
+        Functions.showAlertSnackBar(Functions.getError(l.code));
       }
       emit(state.copyWith(isLoading: false));
     }, (r) {
@@ -57,7 +56,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     ));
     response.fold((l) {
       if (l is FirebaseError) {
-        Functions.showAlertSnackBar(l.code);
+        Functions.showAlertSnackBar(Functions.getError(l.code));
       }
       emit(state.copyWith(isLoading: false));
     }, (r) {
@@ -67,5 +66,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           rootNavigatorKey.currentContext!, Routes.main);
       emit(state.copyWith(isLoading: false));
     });
+  }
+
+  void _enviableSubmitButton(
+      EnableSubmitButtonEvent event, Emitter<AuthState> emit) {
+    if (event.email.length > 6 &&
+        RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+            .hasMatch(event.email) &&
+        event.password.length > 6) {
+      emit(state.copyWith(isEnable: true));
+    } else {
+      emit(state.copyWith(isEnable: false));
+    }
   }
 }

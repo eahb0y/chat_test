@@ -24,11 +24,27 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "chats": MessageLookupByLibrary.simpleMessage("Чаты"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "email_already_exist": MessageLookupByLibrary.simpleMessage(
+            "Этот электронный адрес уже занят"),
+        "input_another_email": MessageLookupByLibrary.simpleMessage(
+            "Вставьте другой адрес электронной почты"),
+        "invalid_email": MessageLookupByLibrary.simpleMessage(
+            "неверный адрес электронной почты"),
         "log_in": MessageLookupByLibrary.simpleMessage("Войти"),
         "massage": MessageLookupByLibrary.simpleMessage("Сообщение"),
+        "open_camera": MessageLookupByLibrary.simpleMessage("Открыть камеру"),
         "password": MessageLookupByLibrary.simpleMessage("Парол"),
         "register": MessageLookupByLibrary.simpleMessage("Регистрироваться"),
         "search": MessageLookupByLibrary.simpleMessage("Поиск"),
-        "welcome": MessageLookupByLibrary.simpleMessage("Добро пожаловать")
+        "select_from_gallery":
+            MessageLookupByLibrary.simpleMessage("Выбрать из галереи"),
+        "user_disabled":
+            MessageLookupByLibrary.simpleMessage("Отключен пользователем"),
+        "user_not_found":
+            MessageLookupByLibrary.simpleMessage("Пользователь не найден"),
+        "weak_password": MessageLookupByLibrary.simpleMessage("Слабый пароль"),
+        "welcome": MessageLookupByLibrary.simpleMessage("Добро пожаловать"),
+        "wrong_password":
+            MessageLookupByLibrary.simpleMessage("Неправильный пароль")
       };
 }

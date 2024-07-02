@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:chat_test/core/functions/base_finctions.dart';
+import 'package:chat_test/core/functions/image_upload.dart';
 import 'package:chat_test/core/local_source/local_source.dart';
 import 'package:chat_test/features/chat/data/model/create_chat_id_request.dart';
 import 'package:chat_test/features/chat/data/model/send_massage_request.dart';
@@ -11,6 +12,7 @@ import 'package:chat_test/features/chat/domain/usecase/send_massage_use_case.dar
 import 'package:chat_test/injection_container.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';
@@ -34,6 +36,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<GetConversationCallEvent>(_conversationStream);
     on<SendMassageCallEvent>(_sendMassage);
     on<EmitConversationCallEvent>(emitConversationMassage);
+    on<UploadImageEvent>(_uploadImage);
   }
 
   Future<void> _getChatId(
@@ -108,5 +111,12 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       add(GetConversationCallEvent(conversation: chatId));
       emit(state.copyWith(chatId: chatId, isLoading: false));
     });
+  }
+
+  Future<void> _uploadImage(
+      UploadImageEvent event, Emitter<ChatState> emit) async {
+    if(event.image != null){
+      await ImageUpload.uploadImage(event.image, state.chatId ?? "");
+    }
   }
 }

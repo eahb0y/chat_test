@@ -2,7 +2,7 @@ part of 'chat_bloc.dart';
 
 class ChatState extends Equatable {
   final bool isLoading;
-  final ConversationMassageResponseEntity? conversationMassageResponseEntity;
+  final Set<MassageEntity>? conversationMassageResponseEntity;
   final String? chatId;
   final bool isStreamWork;
 
@@ -15,7 +15,7 @@ class ChatState extends Equatable {
 
   ChatState copyWith({
     bool? isLoading,
-    ConversationMassageResponseEntity? conversationMassageResponseEntity,
+    Set<MassageEntity>? conversationMassageResponseEntity,
     String? chatId,
     bool? isStreamWork,
   }) {

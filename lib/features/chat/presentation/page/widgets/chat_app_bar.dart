@@ -1,4 +1,5 @@
 import 'package:chat_test/core/theme/app_text_styles.dart';
+import 'package:chat_test/core/utils/app_utils.dart';
 import 'package:flutter/material.dart';
 
 class ChatAppBar extends StatelessWidget {
@@ -12,14 +13,17 @@ class ChatAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Colors.blue,
-      titleSpacing: 0,
-
+      titleSpacing: -4,
+      bottom: const PreferredSize(
+        preferredSize: Size(double.infinity, 12),
+        child: AppUtils.kDivider,
+      ),
       title: PreferredSize(
         preferredSize: const Size(double.infinity, 50),
         child: ListTile(
+          horizontalTitleGap: 12,
           contentPadding: EdgeInsets.zero,
-          leading: CircleAvatar(
+          leading: const CircleAvatar(
             radius: 48,
           ),
           title: Text(

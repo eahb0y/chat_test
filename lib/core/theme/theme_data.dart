@@ -44,8 +44,8 @@ final lightTheme = appTheme.copyWith(
   //
   // ),
   listTileTheme: const ListTileThemeData(
-    minVerticalPadding: 14,
-    minLeadingWidth: 16,
+    minVerticalPadding: 10,
+    minLeadingWidth: 30,
     horizontalTitleGap: 12,
     tileColor: ThemeColors.white,
     selectedColor: LightThemeColors.white,
@@ -80,7 +80,7 @@ final lightTheme = appTheme.copyWith(
       // ),
       titleTextStyle: AppTextStyles.appBarTitle,
       toolbarHeight: 42,
-      iconTheme: IconThemeData(color: ThemeColors.white),
+      iconTheme: IconThemeData(color: ThemeColors.appBarIconColor),
       titleSpacing: 0),
   inputDecorationTheme: const InputDecorationTheme(
     alignLabelWithHint: true,

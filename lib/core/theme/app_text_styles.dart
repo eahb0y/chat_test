@@ -30,4 +30,14 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
     color: LightThemeColors.white,
   );
+  static const chatText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: LightThemeColors.chatMassageText,
+  );
+  static const chatTextTime = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: LightThemeColors.chatMassageText,
+  );
 }

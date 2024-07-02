@@ -13,7 +13,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
 part 'chat_event.dart';
-
 part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
@@ -34,6 +33,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<InitialCallEvent>(_getChatId);
     on<GetConversationCallEvent>(_conversationStream);
     on<SendMassageCallEvent>(_sendMassage);
+    on<EmitConversationCallEvent>(emitConversationMassage);
   }
 
   Future<void> _getChatId(
@@ -42,6 +42,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     final response = await getChatIdUseCase(event.user);
     response.fold((l) {}, (r) {
       if (r.isNotEmpty) {
+        emit(state.copyWith(chatId: r));
         add(GetConversationCallEvent(conversation: r));
       } else {
         _createChatIdCall(event.user, emit);
@@ -52,9 +53,11 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   Future<void> _conversationStream(
       GetConversationCallEvent event, Emitter<ChatState> emit) async {
     try {
+      debugPrint("Starting stream listener...");
       Stream stream =
-          Stream.periodic(const Duration(seconds: 2)).asBroadcastStream();
+          Stream.periodic(const Duration(seconds: 1)).asBroadcastStream();
       stream.listen((_) async {
+        print("stream");
         await _getConversation(event.conversation);
       });
     } catch (e) {
@@ -71,15 +74,22 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
   void emitConversationMassage(
       EmitConversationCallEvent event, Emitter<ChatState> emit) {
+    List<MassageEntity> setToList = event.response.massages.toList();
+    setToList.sort((a, b){
+      int aDate = DateTime.parse(a.massageData ?? '').microsecondsSinceEpoch;
+      int bDate = DateTime.parse(b.massageData ?? '').microsecondsSinceEpoch;
+      return aDate.compareTo(bDate);
+    });
+    setToList.toSet();
     emit(state.copyWith(
-        isLoading: false, conversationMassageResponseEntity: event.response));
+        isLoading: false, conversationMassageResponseEntity: setToList.toSet()));
   }
 
   Future<void> _sendMassage(
       SendMassageCallEvent event, Emitter<ChatState> emit) async {
     final result = await sendMassageUseCase(SendMassageRequest(
       massageSender: sl<LocalSource>().getUserEmail(),
-      conversationId: event.conversationId,
+      conversationId: event.conversationId ?? "",
       massage: event.massage,
       massageId: Functions.generateUniqueId(),
       massageData: DateTime.now().toString(),

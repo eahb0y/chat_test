@@ -8,6 +8,7 @@ class ThemeColors {
   static const errorColor = Color(0xFFD2341D);
   static const buttonColor = Color(0xFF0B2B5E);
   static const disabledColor = Color(0x4D0B2B5E);
+  static const appBarIconColor = Color(0xFF2B333E);
 }
 
 class LightThemeColors extends ThemeColors {
@@ -18,6 +19,8 @@ class LightThemeColors extends ThemeColors {
   static const unselectedItemColor = Color(0xFF9DAABF);
   static const selectedItemColor = Color(0xFF0B2B5E);
   static const snackBarColor = Color(0xFF4D4D4D);
+  static const chatMassageText = Color(0xFF00521C);
+  static const chatMassageBg = Color(0xFF3CED78);
 
 }
 

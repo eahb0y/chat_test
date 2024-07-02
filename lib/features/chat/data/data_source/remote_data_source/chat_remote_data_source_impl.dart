@@ -60,7 +60,7 @@ class ChatRemoteDataSourceImpl extends ChatRemoteDataSource {
       await FirebaseInstance.cloudFireBase
           .collection(FireBaseCollection.conversationBaseCollection)
           .doc("conversation_${request.conversationId}")
-          .collection(request.conversationId ?? "")
+          .collection(request.conversationId)
           .add(request.toJson());
     } on FirebaseAuthException catch (e) {
       throw ServerException.fromJson(e.code);
@@ -73,7 +73,7 @@ class ChatRemoteDataSourceImpl extends ChatRemoteDataSource {
   Future<void> createConversationId(CreateChatIdRequest request) async {
     try {
       await FirebaseInstance.cloudFireBase
-          .collection(FireBaseCollection.conversationBaseCollection)
+          .collection(FireBaseCollection.chatsBaseCollection)
           .add(request.toJson());
     } on FirebaseAuthException catch (e) {
       throw ServerException.fromJson(e.code);

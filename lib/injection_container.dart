@@ -29,6 +29,7 @@ import 'package:chat_test/features/search/data/repository/search_repository_impl
 import 'package:chat_test/features/search/domain/repository/search_repository.dart';
 import 'package:chat_test/features/search/domain/usecase/search_user_use_case.dart';
 import 'package:chat_test/features/search/presentation/bloc/search_bloc.dart';
+import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';

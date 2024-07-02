@@ -4,7 +4,7 @@ class SendMassageRequest {
     this.massageData,
     this.massageId,
     this.massageSender,
-    this.conversationId,
+    this.conversationId = "",
   });
 
   SendMassageRequest.fromJson(dynamic json) {
@@ -18,7 +18,7 @@ class SendMassageRequest {
   String? massageData;
   String? massageId;
   String? massageSender;
-  String? conversationId;
+  String conversationId = "";
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

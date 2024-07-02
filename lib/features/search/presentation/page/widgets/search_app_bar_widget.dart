@@ -13,7 +13,7 @@ class SearchAppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  SliverAppBar(
-      expandedHeight: 135,
+      expandedHeight: 140,
       flexibleSpace: SafeArea(
         minimum: AppUtils.kPaddingR20T14L20,
         child: Column(

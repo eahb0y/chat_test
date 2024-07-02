@@ -40,7 +40,7 @@ class ModalProgressHUD extends StatelessWidget {
     super.key,
     required this.inAsyncCall,
     this.opacity = 0.3,
-    this.color = Colors.grey,
+    this.color = Colors.white,
     this.offset,
     this.dismissible = false,
     required this.child,

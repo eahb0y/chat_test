@@ -1,4 +1,5 @@
 import 'package:chat_test/features/chat/domain/entity/conversation_massage_response_entity.dart';
+import 'package:intl/intl.dart';
 
 class GetConversationResponse {
   GetConversationResponse({
@@ -38,7 +39,10 @@ class GetConversationResponse {
         massageData: value.massageData,
         massageId: value.massageId,
         massageSender: value.massageSender,
+        massageTime: DateFormat("HH:mm", 'en_US').format(
+            DateTime.tryParse(value.massageData ?? "") ?? DateTime.now()),
       ));
+
     }
     return ConversationMassageResponseEntity(
       massages: massages,

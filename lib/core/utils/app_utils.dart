@@ -80,14 +80,11 @@ class AppUtils {
   static const kBoxWidth3 = SizedBox(width: 3);
   static const kBoxWidth10 = SizedBox(width: 10);
   static const kBoxWidth12 = SizedBox(width: 12);
+  static const kBoxWidth13 = SizedBox(width: 13);
   static const kBoxWidth14 = SizedBox(width: 14);
   static const kBoxWidth20 = SizedBox(width: 20);
   static const kBoxWidth16 = SizedBox(width: 16);
   static const kBoxWidth24 = SizedBox(width: 24);
-  static const kBoxWidth30 = SizedBox(width: 30);
-  static const kBoxWidth40 = SizedBox(width: 40);
-  static const kBoxWidth56 = SizedBox(width: 56);
-  static const kBoxWidth95 = SizedBox(width: 95);
 
   /// padding
   static const kPaddingAll4 = EdgeInsets.all(4);
@@ -255,6 +252,8 @@ class AppUtils {
       EdgeInsets.symmetric(horizontal: 8, vertical: 5);
   static const kPaddingHor8Ver6 =
       EdgeInsets.symmetric(horizontal: 8, vertical: 6);
+  static const kPaddingHor10Ver8 =
+      EdgeInsets.symmetric(horizontal: 10, vertical: 8);
   static const kPaddingHor12Ver8 =
       EdgeInsets.symmetric(horizontal: 12, vertical: 8);
   static const kPaddingVer10Hor16 =
@@ -357,46 +356,5 @@ class AppUtils {
   static const kBorderRadius14 = BorderRadius.all(Radius.circular(14));
   static const kBorderRadius24 = BorderRadius.all(Radius.circular(24));
   static const kBorderRadius20 = BorderRadius.all(Radius.circular(20));
-  static const kBorderRadius32 = BorderRadius.all(Radius.circular(32));
-  static const kBorderRadius48 = BorderRadius.all(Radius.circular(48));
-  static const kBorderRadius64 = BorderRadius.all(Radius.circular(64));
-  // static const kBoxDecoration = BoxDecoration(
-  //   borderRadius: AppUtils.kBorderRadius24,
-  //   color: LightThemeColors.whiteBackground,
-  // );
-  // static const kBoxDecorationNoRadius = BoxDecoration(
-  //   color: LightThemeColors.whiteBackground,
-  // );
-  //
-  // static const kBoxDecoration12 = BoxDecoration(
-  //   borderRadius: AppUtils.kBorderRadius12,
-  //   color: LightThemeColors.whiteBackground,
-  // );
-  // static const kBoxDecoration12Gray = BoxDecoration(
-  //   borderRadius: AppUtils.kBorderRadius12,
-  //   color: LightThemeColors.scaffoldBackgroundColor,
-  // );
-  // static BoxDecoration kBoxDecoration12WhiteBorderRed = BoxDecoration(
-  //   borderRadius: AppUtils.kBorderRadius12,
-  //   color: LightThemeColors.whiteBackground,
-  //   border: Border.all(color: LightThemeColors.red),
-  // );
-  // static const kBoxDecorationTop24 = BoxDecoration(
-  //   color: LightThemeColors.white,
-  //   borderRadius: AppUtils.kBorderRadiusTop24,
-  // );
-  // static const kBoxDecorationTop = BoxDecoration(
-  //   borderRadius: BorderRadius.only(
-  //     topLeft: Radius.circular(24),
-  //     topRight: Radius.circular(24),
-  //   ),
-  //   color: LightThemeColors.whiteBackground,
-  // );
-  // static const kBoxDecorationBottom = BoxDecoration(
-  //   borderRadius: BorderRadius.only(
-  //     bottomLeft: Radius.circular(24),
-  //     bottomRight: Radius.circular(24),
-  //   ),
-  //   color: LightThemeColors.whiteBackground,
-  // );
+  static const kBorderRadius21 = BorderRadius.all(Radius.circular(21));
 }

@@ -68,4 +68,8 @@ class Functions {
         return AppLocalization.current.input_another_email;
     }
   }
+
+  static String getNameFirstLatter(String name){
+    return name.isNotEmpty ? name[0] : "";
+  }
 }

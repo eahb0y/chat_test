@@ -26,7 +26,7 @@ class ChatMassagesWidget extends StatelessWidget {
               ? MainAxisAlignment.end
               : MainAxisAlignment.start,
           children: [
-            Ink(
+            Container(
               padding: AppUtils.kPaddingHor10Ver8,
               decoration: BoxDecoration(
                 color: (massages[index].massageSender ==
@@ -48,6 +48,8 @@ class ChatMassagesWidget extends StatelessWidget {
                         child: CustomCachedNetworkImage(
                             imageUrl: massages[index].massage ?? "",
                             height: 160,
+                          width: 200,
+                          fit: BoxFit.cover,
                           ),
                       )
                       : Text(

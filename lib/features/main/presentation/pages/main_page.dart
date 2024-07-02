@@ -1,3 +1,4 @@
+import 'package:chat_test/core/functions/base_finctions.dart';
 import 'package:chat_test/core/loading/progress_hud.dart';
 import 'package:chat_test/core/theme/app_text_styles.dart';
 import 'package:chat_test/core/utils/app_utils.dart';
@@ -49,8 +50,13 @@ class _MainPageState extends State<MainPage> with MainMixin {
                     minLeadingWidth: 10,
                     minVerticalPadding: 0,
                     horizontalTitleGap: -4,
-                    leading: const CircleAvatar(
+                    leading: CircleAvatar(
                       radius: 50,
+                      child: Text(Functions.getNameFirstLatter(state
+                              .massagesList?.setOfChats
+                              ?.toList()[index]
+                              .recipient ??
+                          "")),
                     ),
                     title: Text(
                       state.massagesList?.setOfChats

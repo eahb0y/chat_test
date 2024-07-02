@@ -1,3 +1,4 @@
+import 'package:chat_test/core/functions/base_finctions.dart';
 import 'package:chat_test/core/loading/progress_hud.dart';
 import 'package:chat_test/core/theme/app_text_styles.dart';
 import 'package:chat_test/core/theme/colors/app_colors.dart';
@@ -53,23 +54,26 @@ class _ChatPageState extends State<ChatPage> with ChatMixin {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            titleSpacing: -4,
+            titleSpacing: 0,
+            toolbarHeight: 50,
+            centerTitle: false,
             bottom: const PreferredSize(
               preferredSize: Size(double.infinity, 12),
               child: AppUtils.kDivider,
             ),
-            title: PreferredSize(
-              preferredSize: const Size(double.infinity, 50),
-              child: ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: const CircleAvatar(
+            title: Row(
+              children: [
+                CircleAvatar(
                   radius: 24,
+                  child: Text(Functions.getNameFirstLatter(
+                      widget.arguments?.user ?? "")),
                 ),
-                title: Text(
+                AppUtils.kBoxWidth12,
+                Text(
                   widget.arguments?.user ?? "",
                   style: AppTextStyles.chatsTitle,
                 ),
-              ),
+              ],
             ),
           ),
           body: ModalProgressHUD(
@@ -117,21 +121,21 @@ class _ChatPageState extends State<ChatPage> with ChatMixin {
                                               source: ImageSource.camera,
                                               preferredCameraDevice:
                                                   CameraDevice.front)
-                                          .then((value) => context
-                                              .read<ChatBloc>()
-                                              .add(UploadImageEvent(
-                                                  image: value)));
+                                          .then((value) {
+                                        context.read<ChatBloc>().add(
+                                            UploadImageEvent(image: value));
+                                        Navigator.pop(context);
+                                          });
                                     },
                                     onChooseGallery: () {
                                       ImagePicker()
                                           .pickImage(
                                               source: ImageSource.gallery)
-                                          .then(
-                                            (value) => context
-                                                .read<ChatBloc>()
-                                                .add(UploadImageEvent(
-                                                    image: value)),
-                                          );
+                                          .then((value) {
+                                        context.read<ChatBloc>().add(
+                                            UploadImageEvent(image: value));
+                                        Navigator.pop(context);
+                                      });
                                     },
                                   ));
                         },

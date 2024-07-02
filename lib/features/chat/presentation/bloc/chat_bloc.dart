@@ -101,7 +101,11 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   Future<void> _uploadImage(
       UploadImageEvent event, Emitter<ChatState> emit) async {
     if(event.image != null){
-      await ImageUpload.uploadImage(event.image, state.chatId ?? "");
+      await ImageUpload.uploadImage(
+        img: event.image,
+        conversationId: state.chatId ?? "",
+        genId: Functions.generateUniqueId(),
+      );
     }
   }
 }

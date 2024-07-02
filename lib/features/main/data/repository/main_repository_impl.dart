@@ -1,3 +1,4 @@
+import 'package:chat_test/core/error/exceptions.dart';
 import 'package:chat_test/core/error/failure.dart';
 import 'package:chat_test/features/main/data/data_source/data_source/remote_data_source/main_remote_data_source.dart';
 import 'package:chat_test/features/main/data/model/chats_response.dart';
@@ -17,8 +18,8 @@ class MainRepositoryImpl extends MainRepository {
       final response = await remoteDataSource.getChats();
       return Right(ChatsResponse.toEntity(response));
     } catch (e) {
-      return Left(ServerError(
-        message: e is ServerError ? e.message : e.toString(),
+      return Left(FirebaseError(
+        code: e is ServerException ? (e.errorCode ?? "") : e.toString(),
       ));
     }
   }
@@ -29,8 +30,8 @@ class MainRepositoryImpl extends MainRepository {
       final response = await remoteDataSource.searchUser();
       return Right(response);
     } catch (e) {
-      return Left(ServerError(
-        message: e is ServerError ? e.message : e.toString(),
+      return Left(FirebaseError(
+        code: e is ServerException ? (e.errorCode ?? "") : e.toString(),
       ));
     }
   }

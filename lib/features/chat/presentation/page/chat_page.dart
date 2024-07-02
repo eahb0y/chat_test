@@ -8,6 +8,7 @@ import 'package:chat_test/features/chat/presentation/mixin/chat_mixin.dart';
 import 'package:chat_test/features/chat/presentation/page/widgets/chat_massages_widget.dart';
 import 'package:chat_test/features/chat/presentation/page/widgets/select_image_bottom_sheet.dart';
 import 'package:chat_test/generated/l10n.dart';
+import 'package:chat_test/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,7 +33,18 @@ class _ChatPageState extends State<ChatPage> with ChatMixin {
     context
         .read<ChatBloc>()
         .add(InitialCallEvent(user: widget.arguments?.user ?? ""));
+    _streamCall();
     super.initState();
+  }
+
+  void _streamCall() {
+    var broadcastStream = stream.stream.asBroadcastStream();
+    broadcastStream.listen(
+      (value) {
+        context.read<ChatBloc>().add(GetConversationCallEvent(
+            conversation: sl<ChatBloc>().state.chatId ?? ""));
+      },
+    );
   }
 
   @override

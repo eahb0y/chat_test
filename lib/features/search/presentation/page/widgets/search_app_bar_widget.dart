@@ -14,42 +14,43 @@ class SearchAppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return  SliverAppBar(
       expandedHeight: 140,
-      flexibleSpace: SafeArea(
-        minimum: AppUtils.kPaddingR20T14L20,
+      title: Text(
+        AppLocalization.current.search,
+        style: AppTextStyles.appBarTitle,
+      ),
+      bottom: PreferredSize(
+        preferredSize: const Size(
+          double.infinity,
+          1,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              AppLocalization.current.chats,
-              style: AppTextStyles.appBarTitle,
-            ),
-            AppUtils.kBoxHeight6,
-            TextField(
-              onChanged: (value) {
-                Debouncer.run(() {
-                  context.read<SearchBloc>().add(SearchUserEvent(user: value));
-                });
-              },
-              decoration: InputDecoration(
-                prefixIcon: Padding(
-                  padding: AppUtils.kPaddingAll8,
-                  child: SvgPicture.asset(
-                    "assets/svg/ic_search.svg",
-                    height: 24,
+            Padding(
+              padding: AppUtils.kPaddingHor20,
+              child: TextField(
+                onChanged: (value) {
+                  Debouncer.run(() {
+                    context
+                        .read<SearchBloc>()
+                        .add(SearchUserEvent(user: value));
+                  });
+                },
+                decoration: InputDecoration(
+                  prefixIcon: Padding(
+                    padding: AppUtils.kPaddingAll8,
+                    child: SvgPicture.asset(
+                      "assets/svg/ic_search.svg",
+                      height: 24,
+                    ),
                   ),
                 ),
               ),
             ),
             AppUtils.kBoxHeight24,
+            AppUtils.kDivider
           ],
         ),
-      ),
-      bottom: const PreferredSize(
-        preferredSize: Size(
-          double.infinity,
-          1,
-        ),
-        child: AppUtils.kDivider,
       ),
     );
   }

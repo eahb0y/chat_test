@@ -11,7 +11,6 @@ import 'package:chat_test/features/chat/domain/usecase/get_conversation_use_case
 import 'package:chat_test/features/chat/domain/usecase/send_massage_use_case.dart';
 import 'package:chat_test/injection_container.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 
 part 'chat_event.dart';
@@ -55,21 +54,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
   Future<void> _conversationStream(
       GetConversationCallEvent event, Emitter<ChatState> emit) async {
-    try {
-      debugPrint("Starting stream listener...");
-      Stream stream =
-          Stream.periodic(const Duration(seconds: 1)).asBroadcastStream();
-      stream.listen((_) async {
-        print("stream");
-        await _getConversation(event.conversation);
-      });
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
-
-  Future<void> _getConversation(String conversationId) async {
-    final response = await getConversationUseCase(conversationId);
+    final response = await getConversationUseCase(state.chatId ?? "");
     response.fold((l) {}, (r) {
       add(EmitConversationCallEvent(response: r));
     });

@@ -14,6 +14,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
   MainBloc(this.getChatsUseCase) : super(const MainState(isLoading: false)) {
     on<GetAllChatsEvent>(_getAllChat);
+    on<OnStreamCallEvent>(_getChatsOnStream);
   }
 
   Future<void> _getAllChat(
@@ -32,45 +33,18 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       ));
     });
   }
-// Future<void> _writeUserNameCall(
-//     SetUserEvent event, Emitter<MainState> emit) async {
-//   try {
-//     await firestore
-//         .collection("chats-ad_awim")
-//         .add({"massage": event.userName, "mine-massage": true});
-//   } catch (e) {
-//     debugPrint(e.toString());
-//   }
-// }
 
-// Future<void> _getUserChatCall(
-//     GetUserChatEvent event, Emitter<MainState> emit) async {
-//   try {
-//     print("Starting stream listener...");
-//     Stream stream =
-//         Stream.periodic(const Duration(seconds: 2)).asBroadcastStream();
-//     stream.listen((_) async {
-//       await _getUserMassage();
-//     });
-//   } on FirebaseException catch (e) {
-//     debugPrint(e.toString());
-//   }
-// }
-//
-// Future<void> _getUserMassage() async {
-//   try {
-//     Set<Items> massagesList = {};
-//     var result = await firestore.collection("chats-ad_awim").get();
-//     for (var doc in result.docs) {
-//       massagesList.add(Items.fromJson(doc.data()));
-//     }
-//     add(ShowMessageEvent(items: massagesList));
-//   } catch (e) {
-//     debugPrint("Error fetching messages: $e");
-//   }
-// }
-//
-// void _showMessage(ShowMessageEvent event, Emitter<MainState> emit) {
-//   emit(state.copyWith(massageList: event.items));
-// }
+  Future<void> _getChatsOnStream(
+      OnStreamCallEvent event, Emitter<MainState> emit) async {
+    final response = await getChatsUseCase(const NoParams());
+    response.fold((l) {
+      // if (l is FirebaseError) {
+      //   Functions.showAlertSnackBar(l.code);
+      // }
+    }, (r) {
+      emit(state.copyWith(
+        massagesList: r,
+      ));
+    });
+  }
 }

@@ -24,7 +24,7 @@ class MainAppBar extends StatelessWidget {
             AppUtils.kBoxHeight6,
             TextField(
               onTap: () {
-                Navigator.pushReplacementNamed(context, Routes.search);
+                Navigator.pushNamed(context, Routes.search);
               },
               readOnly: true,
               decoration: InputDecoration(

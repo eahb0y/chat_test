@@ -65,6 +65,11 @@ class _MainPageState extends State<MainPage> with MainMixin {
                           "",
                       style: AppTextStyles.chatsTitle,
                     ),
+                    // subtitle: Text(Functions.onlineUser(state
+                    //         .massagesList?.setOfChats
+                    //         ?.toList()[index]
+                    //         .recipient ??
+                    //     "")),
                     onTap: () {
                       Navigator.pushNamed(context, Routes.chat,
                           arguments: ChatArguments(

@@ -17,7 +17,7 @@ mixin ChatMixin{
 
   void disposeController(){
     controller.dispose();
-    timer.cancel();
     stream.close();
+    timer.cancel();
   }
 }

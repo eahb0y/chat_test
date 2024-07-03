@@ -6,6 +6,7 @@ import 'package:chat_test/features/auth/data/data_source/remote_data_source/auth
 import 'package:chat_test/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:chat_test/features/auth/domain/repository/auth_repository.dart';
 import 'package:chat_test/features/auth/domain/usecacse/create_user_auth_use_case.dart';
+import 'package:chat_test/features/auth/domain/usecacse/create_user_on_cloud_use_case.dart';
 import 'package:chat_test/features/auth/domain/usecacse/login_auth_use_case.dart';
 import 'package:chat_test/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:chat_test/features/chat/data/data_source/remote_data_source/chat_remote_data_source.dart';
@@ -29,7 +30,6 @@ import 'package:chat_test/features/search/data/repository/search_repository_impl
 import 'package:chat_test/features/search/domain/repository/search_repository.dart';
 import 'package:chat_test/features/search/domain/usecase/search_user_use_case.dart';
 import 'package:chat_test/features/search/presentation/bloc/search_bloc.dart';
-import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -48,12 +48,14 @@ Future<void> init() async {
 
 void _authFeature() {
   /// Presentation
-  sl.registerFactory(() => AuthBloc(sl(), sl()));
+  sl.registerFactory(() => AuthBloc(sl(), sl(), sl()));
 
   /// UseCases
   sl.registerLazySingleton<CreateUserAuthUseCase>(
       () => CreateUserAuthUseCase(sl()));
   sl.registerLazySingleton<LoginAuthUseCase>(() => LoginAuthUseCase(sl()));
+  sl.registerLazySingleton<CreateUserOnCloudUseCase>(
+      () => CreateUserOnCloudUseCase(sl()));
 
   ///Repositories
   sl.registerLazySingleton<AuthRepository>(

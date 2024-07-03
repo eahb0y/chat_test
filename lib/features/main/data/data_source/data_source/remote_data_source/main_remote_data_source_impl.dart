@@ -26,22 +26,8 @@ class MainRemoteDataSourceImpl extends MainRemoteDataSource {
   }
 
   @override
-  Future<Set<String>> searchUser() async {
-    Set<String> setOfChats = {};
-    try {
-      final response = await FirebaseInstance.cloudFireBase
-          .collection(FireBaseCollection.usersBaseCollection)
-          .get();
-      if (response.docs.isNotEmpty) {
-        for (var value in response.docs) {
-          setOfChats.add(value.reference.id);
-        }
-      }
-      return setOfChats;
-    } on FirebaseAuthException catch (e) {
-      throw ServerException.fromJson(e.code);
-    } on FormatException {
-      throw ServerException(errorCode: Validations.someThingWentWrong);
-    }
+  Future<String> setTime(String time) {
+    // TODO: implement setTime
+    throw UnimplementedError();
   }
 }

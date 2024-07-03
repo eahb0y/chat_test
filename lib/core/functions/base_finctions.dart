@@ -7,6 +7,7 @@ import 'package:chat_test/core/utils/app_utils.dart';
 import 'package:chat_test/generated/l10n.dart';
 import 'package:chat_test/router/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Functions {
   static void showAlertSnackBar(String text) {
@@ -71,5 +72,25 @@ class Functions {
 
   static String getNameFirstLatter(String name){
     return name.isNotEmpty ? name[0] : "";
+  }
+
+  static String onlineUser(String data) {
+    DateTime now = DateTime.now();
+    DateTime time = DateTime.tryParse(data) ?? now;
+    bool difference = now
+        .difference(time)
+        .inMinutes < 1;
+
+    if (time == now || difference) {
+      return AppLocalization.current.online;
+    } else if (now
+        .difference(time)
+        .inHours < 24) {
+      return DateFormat("HH:mm", 'en_US').format(
+          DateTime.tryParse(data) ?? now);
+    } else{
+      return DateFormat("dd.MMMM.yyyy", 'en_US').format(
+          DateTime.tryParse(data) ?? now);
+    }
   }
 }

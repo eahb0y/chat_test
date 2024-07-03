@@ -20,13 +20,26 @@ class ImageUpload {
     TaskSnapshot taskSnapshot =
         await storage.ref('$path/$imageName').putFile(File(img?.path ?? ""));
 
+    await FirebaseFirestore.instance
+        .collection(FireBaseCollection.conversationBaseCollection)
+        .doc("conversation_$conversationId")
+        .collection(conversationId)
+        .doc(genId)
+        .set({
+      "massage": "https://firebasestorage",
+      "massage_sender": sl<LocalSource>().getUserEmail(),
+      "massage_id": genId,
+      "massage_data": DateTime.now().toString()
+    });
+
     final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
 
       await FirebaseFirestore.instance
           .collection(FireBaseCollection.conversationBaseCollection)
           .doc("conversation_$conversationId")
         .collection(conversationId)
-        .add({
+        .doc(genId)
+        .update({
       "massage": downloadUrl,
       "massage_sender": sl<LocalSource>().getUserEmail(),
       "massage_id": genId,

@@ -38,9 +38,6 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       OnStreamCallEvent event, Emitter<MainState> emit) async {
     final response = await getChatsUseCase(const NoParams());
     response.fold((l) {
-      // if (l is FirebaseError) {
-      //   Functions.showAlertSnackBar(l.code);
-      // }
     }, (r) {
       emit(state.copyWith(
         massagesList: r,

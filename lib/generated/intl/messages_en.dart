@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "неверный адрес электронной почты"),
         "log_in": MessageLookupByLibrary.simpleMessage("Войти"),
         "massage": MessageLookupByLibrary.simpleMessage("Сообщение"),
+        "online": MessageLookupByLibrary.simpleMessage("В сети"),
         "open_camera": MessageLookupByLibrary.simpleMessage("Открыть камеру"),
         "password": MessageLookupByLibrary.simpleMessage("Парол"),
         "register": MessageLookupByLibrary.simpleMessage("Регистрироваться"),

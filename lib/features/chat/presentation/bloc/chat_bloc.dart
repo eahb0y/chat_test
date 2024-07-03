@@ -45,7 +45,6 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     response.fold((l) {}, (r) {
       if (r.isNotEmpty) {
         emit(state.copyWith(chatId: r));
-        add(GetConversationCallEvent(conversation: r));
       } else {
         _createChatIdCall(event.user, emit);
       }
@@ -80,7 +79,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       conversationId: event.conversationId ?? "",
       massage: event.massage,
       massageId: Functions.generateUniqueId(),
-      massageData: DateTime.now().toString(),
+      massageData: event.date,
     ));
     result.fold((l) {}, (r) {});
   }

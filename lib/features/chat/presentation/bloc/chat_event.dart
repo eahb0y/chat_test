@@ -36,16 +36,19 @@ class EmitConversationCallEvent extends ChatEvent {
 class SendMassageCallEvent extends ChatEvent {
   final String? massage;
   final String? conversationId;
+  final String? date;
 
   const SendMassageCallEvent({
     required this.massage,
     required this.conversationId,
+    required this.date,
   });
 
   @override
   List<Object?> get props => [
         massage,
         conversationId,
+        date,
       ];
 }
 

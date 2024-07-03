@@ -157,6 +157,7 @@ class _ChatPageState extends State<ChatPage> with ChatMixin {
                           context.read<ChatBloc>().add(SendMassageCallEvent(
                                 massage: controller.text,
                                 conversationId: state.chatId,
+                                date: DateTime.now().toString(),
                               ));
                           controller.clear();
                         },

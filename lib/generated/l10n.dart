@@ -219,6 +219,16 @@ class AppLocalization {
       args: [],
     );
   }
+
+  /// `В сети`
+  String get online {
+    return Intl.message(
+      'В сети',
+      name: 'online',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
